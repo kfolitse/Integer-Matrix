@@ -115,17 +115,31 @@ class Matrix {
         bool operator!=(const Matrix &rhs) ;
         
         /* 
-         * Compound operator += overloads 
+         * Compound operator += overloads.
+         * Element-wise addition of two matrices.
+         * Throws invalid_argument exception if dimensions do not match.
          * @param rhs the right-hand side of the operator.
          * @returns a reference to the matrix 
          */
         Matrix& operator+=(const Matrix &rhs);
         
-        /* Compound operator -= overload */
-         // Matrix & operator-=(const Matrix &rhs);
+        /* 
+         * Compound operator -= overloads.
+         * Element-wise subtraction of two matrices.
+         * Throws invalid_argument exception if dimensions do not match.
+         * @param rhs the right-hand side of the operator.
+         * @returns a reference to the matrix 
+         */
+         Matrix& operator-=(const Matrix &rhs);
         
-        /* Compound operator *= overload */
-        //Matrix & operator*=(const Matrix &rhs);
+        /* 
+         * Compound operator *= overloads.
+         * Throws invalid_argument exception if dimensions do not match.
+         * @param rhs the right-hand side of the operator.
+         * @returns a reference to the matrix 
+         */
+         Matrix& operator*=(const Matrix &rhs);
+        
       
        
     
@@ -140,13 +154,37 @@ class Matrix {
        
 };
 /* 
- * Arithmetic operator += overload. 
+ * Arithmetic operator + overload. 
  * Element-wise addition of two matrices.
+ * Throws invalid_argument exception if dimensions do not match.
  * @param m1 matrix.
  * @param m2 matrix.
  * @returns a matrix 
  */
  Matrix operator+(const Matrix &m1, const Matrix &m2);
+ 
+ 
+/* 
+ * Arithmetic operator- overload. 
+ * Element-wise addition of two matrices.
+ * Throws invalid_argument exception if dimensions do not match.
+ * @param m1 matrix.
+ * @param m2 matrix.
+ * @returns a matrix 
+ */
+ Matrix operator-(const Matrix &m1, const Matrix &m2);
+ 
+ 
+/* 
+ * Arithmetic operator * overload. 
+ * Multiplication of two matrices. 
+ * m1 = (rows1,cols1), m2 =  (rows1,cols2).
+ * Throws invalid_argument exception if cols1 != rows1.
+ * @param m1 matrix.
+ * @param m2 matrix.
+ * @returns a matrix 
+ */
+ Matrix operator-(const Matrix &m1, const Matrix &m2);
 
 #endif /* MATRIX_H */
 
