@@ -12,6 +12,9 @@
 #include "matrix.h"
 #include <iostream>
 
+using namespace std;
+
+
 Matrix::Matrix (){
     this->cols = 0;
     this->rows = 0;
@@ -74,10 +77,7 @@ Matrix& Matrix::operator=(const Matrix  &rhs){
     return *this; 
 
 }
-
-
-/*
- // Move-constructor implementation  
+/* Move-constructor implementation  */
 Matrix::Matrix(Matrix &&mat){
     this->rows = mat.rows;
     this->cols = mat.cols;
@@ -85,25 +85,24 @@ Matrix::Matrix(Matrix &&mat){
  
     mat.data = nullptr;
 }
-// Move-assignment implementation  
+
+
+/* Move-assignment implementation  */
 Matrix & Matrix::operator=(Matrix &&rhs){
     
     if(this == &rhs ){
         return *this;
     }
-    // Release old memory 
+    /* Release old memory */
     delete [] this->data; 
     this->rows = rhs.rows;
     this->cols = rhs.cols;
     this->data = rhs.data;
     rhs.data = nullptr;
     
-    // Returns a non-constant reference        
+    /* Returns a non-constant reference */        
     return *this;
 }
- 
- */
-
 /* 
  * Get implementation.
  * Index r = [0:rows -1]
@@ -146,4 +145,31 @@ bool Matrix::operator==(const Matrix &rhs){
 /* Inequality operators != overload implementation */
 bool Matrix::operator!=(const Matrix &rhs){
     return !(this->operator==(rhs));
+}
+
+Matrix& Matrix::operator+=(const Matrix &rhs) {
+    if ((this->rows != rhs.rows) || (this->cols != rhs.cols)) {
+         std::string msg = "Dimension do no match ";
+        throw std::invalid_argument (msg); 
+    }
+   /* Element-wise add operations */
+    for (int i = 0; i < (this->rows * this->cols); i++) {
+        this->data[i] += rhs.data[i];
+    }
+    return *this; 
+   
+}
+
+Matrix operator+(const Matrix &m1, const Matrix &m2){
+
+    if ((m1.numRows() != m2.numRows()) || (m1.numCols() != m2.numCols())) {
+         std::string msg = "Dimension do no match ";
+        throw std::invalid_argument (msg); 
+    }
+   // Create a new matrix 
+    Matrix m (m1);
+    m.operator+=(m2);
+    
+    return m;
+    
 }

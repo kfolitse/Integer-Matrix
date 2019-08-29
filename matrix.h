@@ -114,8 +114,12 @@ class Matrix {
          */
         bool operator!=(const Matrix &rhs) ;
         
-        /* Compound operator += overload */
-       // Matrix & operator+=(const Matrix &rhs);
+        /* 
+         * Compound operator += overloads 
+         * @param rhs the right-hand side of the operator.
+         * @returns a reference to the matrix 
+         */
+        Matrix& operator+=(const Matrix &rhs);
         
         /* Compound operator -= overload */
          // Matrix & operator-=(const Matrix &rhs);
@@ -135,6 +139,14 @@ class Matrix {
         int *data;
        
 };
+/* 
+ * Arithmetic operator += overload. 
+ * Element-wise addition of two matrices.
+ * @param m1 matrix.
+ * @param m2 matrix.
+ * @returns a matrix 
+ */
+ Matrix operator+(const Matrix &m1, const Matrix &m2);
 
 #endif /* MATRIX_H */
 
